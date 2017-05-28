@@ -47,7 +47,7 @@ docker build -t fable/fluffos ./docker-fluffos
 
 ### run mudlib
 
-  运行mud,即用floffs驱动mudlib,比如fy4/xkx等(https://github.com/mudchina/有一些mudlib)。
+  运行mud,即用floffs驱动mudlib,比如fy4/xkx等(https://github.com/mudchina/ 有一些mudlib)。
 以下的 fy4 为参考,可能需要修改源码。
 ```bash
 cd mudserver
