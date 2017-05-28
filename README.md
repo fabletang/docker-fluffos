@@ -2,7 +2,7 @@ Docker Fluffos
 ==============
 ### 项目概要 
 
-此项目参考了 https://github.com/lostsnow/docker-fluffos,在此基础上找到最终解决方法。<br> 
+此项目参考了 https://github.com/lostsnow/docker-fluffos ,在此基础上找到最终解决方法。<br> 
 fluffos版本为:3.0-alpha9.0<br> 
 docker版本为:1.12.6<br> 
 docker基础系统为:ubuntu:14.04<br> 
@@ -18,7 +18,7 @@ git clone https://github.com/fabletang/docker-fluffos
 cd docker-fluffos
 docker build -t fable/fluffos-build ./build
 ```
-成功后可以看到  REPOSITORY下 显示fable/fluffos-build  。
+成功后,docker images 可以看到  REPOSITORY下 显示fable/fluffos-build  。
 
 ### compile driver
 
@@ -43,7 +43,7 @@ docker run --rm -v /XXXX/mudserver:/opt/projects fable/fluffos-build
 ```bash
 docker build -t fable/fluffos ./docker-fluffos
 ``` 
-成功后可以看到  REPOSITORY下 显示fable/fluffos 。
+成功后,docker images 可以看到  REPOSITORY下 显示fable/fluffos 。
 
 ### run mudlib
 
