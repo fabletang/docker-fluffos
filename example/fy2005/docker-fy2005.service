@@ -1,0 +1,17 @@
+[Unit]
+Description= game fy2005
+Requires=docker-mysql.service
+After=docker.target
+
+[Service]
+Restart=always
+RestartSec=10
+TimeoutStartSec=25min
+ExecStartPre=-/usr/bin/docker kill fy2005
+ExecStart=/usr/bin/docker run --name fy2005 --link mysql:mysql-glfy -m 512M --memory-swappiness=0 -p 6666:8888 -v /mudlib/glfy/upload/fy2005:/opt/projects  fabletang/fluffos-nt /opt/projects/fy2005-nt.config
+ExecStartPost=-/usr/bin/docker rm fy2005
+ExecStop=/usr/bin/docker stop fy2005
+ExecStopPost=-/usr/bin/docker rm fy2005
+
+[Install]
+WantedBy=multi-user.target

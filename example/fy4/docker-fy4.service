@@ -1,0 +1,18 @@
+[Unit]
+Description= game fengyun 4
+Requires=docker.service
+After=docker.target
+
+[Service]
+#Restart=on-failure
+Restart=always
+RestartSec=10
+TimeoutStartSec=5min
+ExecStartPre=-/usr/bin/docker kill fy4
+ExecStart=/usr/bin/docker run --name fy4 -m 512M --memory-swappiness=0 -p 8888:8888 -v /data/mudserver/mudlib/fy4:/opt/projects  fable/fluffos /opt/projects/fy4.ini
+ExecStartPost=-/usr/bin/docker rm fy4
+ExecStop=/usr/bin/docker stop fy4
+ExecStopPost=-/usr/bin/docker rm fy4
+
+[Install]
+WantedBy=multi-user.target

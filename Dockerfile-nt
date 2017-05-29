@@ -1,0 +1,26 @@
+#FROM ubuntu:wily
+FROM docker.io/fabletang/fluffos:latest
+RUN apt-get update && \
+	apt-get  -y install libevent-dev libmysqlclient-dev libssl1.0.0 libssl-dev \ 
+        --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+#RUN ln -s /usr/lib/mysql/libmysqlclient.so.16 /usr/lib64/mysql/libmysqlclient.so.16
+#RUN ls -s libmysqlclient.so.16 libmysqlclient.so.16.0.0
+#RUN ln -s /usr/local/mysql/lib/libmysqlclient.so.16 /usr/lib/mysql/libmysqlclient.so.16.0.0
+
+RUN cd /lib/x86_64-linux-gnu && \
+	sudo ln -s libssl.so.1.0.0 libssl.so.10 && \
+	sudo ln -s libcrypto.so.1.0.0 libcrypto.so.10
+
+COPY bin-nt/driver bin-nt/addr_server /usr/bin/
+       #apt-get	-y install libmysqlclient16-dev \ 
+COPY bin-nt/libmysqlclient.so.16 /lib
+RUN cd /lib && \
+        sudo ln -s ln -s libmysqlclient.so.16 /lib/lib64/libmysqlclient.so.16 && \
+        sudo ln -s ln -s libmysqlclient.so.16 /usr/lib/libmysqlclient.so.16 && \
+        sudo ln -s ln -s libmysqlclient.so.16 /usr/lib64/libmysqlclient.so.16
+      
+#COPY bin-nt/libmysqlclient.so.16 /lib/lib64
+
+ENTRYPOINT ["/usr/bin/driver"]

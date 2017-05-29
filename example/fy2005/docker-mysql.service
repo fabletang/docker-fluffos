@@ -1,0 +1,17 @@
+[Unit]
+Description= mysql for fy2005
+Requires=docker.service
+After=docker.target
+
+[Service]
+Restart=always
+RestartSec=20
+TimeoutStartSec=15min
+ExecStartPre=-/usr/bin/docker kill mysql
+ExecStart=/usr/bin/docker run --name mysql -v /mudlib/mysql/:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=sea123  mysql:5.7
+ExecStartPost=-/usr/bin/docker rm mysql
+ExecStop=/usr/bin/docker stop mysql
+ExecStopPost=-/usr/bin/docker rm mysql
+
+[Install]
+WantedBy=multi-user.target

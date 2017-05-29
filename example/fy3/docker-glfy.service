@@ -1,0 +1,17 @@
+[Unit]
+Description= game fengyun 3
+Requires=docker.service
+After=docker.target
+
+[Service]
+Restart=always
+RestartSec=10
+TimeoutStartSec=5min
+ExecStartPre=-/usr/bin/docker kill glfy
+ExecStart=/usr/bin/docker run --name glfy -m 512M --memory-swappiness=0 -p 3333:8888 -v /mudlib/glfy/upload/fy3:/opt/projects  fabletang/fluffos /opt/projects/glfy.ini
+ExecStartPost=-/usr/bin/docker rm glfy
+ExecStop=/usr/bin/docker stop glfy
+ExecStopPost=-/usr/bin/docker rm glfy
+
+[Install]
+WantedBy=multi-user.target
